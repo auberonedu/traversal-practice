@@ -8,6 +8,20 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static void printOddNodes(Node<Integer> node) {
+    if(node == null){
+      return;
+    }
+
+    // visit left subtree recursively
+    printOddNodes(node.left);
+
+    // visit right subtree recursively
+    printOddNodes(node.right);
+
+    // determine if root of current subtree is odd
+    if( node.value % 2 != 0 ){
+      System.out.println(node.value);
+    }
 
   }
 
