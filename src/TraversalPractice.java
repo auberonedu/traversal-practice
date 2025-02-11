@@ -33,10 +33,10 @@ public class TraversalPractice {
       return;
     }
 
-    if (node.left == null && node.right != null || node.left != null && node.right == null) {
+    if ((node.left == null && node.right != null) || (node.left != null && node.right == null)) {
       System.out.println(node.value);
     }
-    
+
     printNodesWithOneChild(node.left);
     printNodesWithOneChild(node.right);
   }
