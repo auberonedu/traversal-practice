@@ -102,6 +102,15 @@ public class TraversalPractice {
    * @return The number of levels in the tree
    */
   public static <T> int numLevels(Node<T> node) {
+    if (node == null) return 0;
+
+    if (node.left == null && node.right == null) return 1;
+
+    int highestCount = 1;
+
+    // highest distance from root to leaf
+    
+
     return 0;
   }
 
