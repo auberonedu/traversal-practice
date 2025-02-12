@@ -8,6 +8,18 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static void printOddNodes(Node<Integer> node) {
+    if (node == null) return;
+
+    
+
+    //post-order traversal
+    printOddNodes(node.left);
+    printOddNodes(node.right);
+    // System.out.println(node.value);
+    //use modulus to check if odd -> print
+    if (node.value % 2 != 0) {
+      System.out.println(node.value);
+    }
 
   }
 
