@@ -8,7 +8,21 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static void printOddNodes(Node<Integer> node) {
-
+    /*
+     * if node is null return
+     * traverse through the node using post-order algo
+     * if node is not even, store and print the odd value 
+     * 
+     */
+    // Returning if the node is null
+     if (node == null) return;
+    // Traverse through the nodes
+     printOddNodes(node.left);
+     printOddNodes(node.right);
+    // If node is not even, print
+     if (node.value % 2 != 0) {
+        System.out.println(node.value);
+     }
   }
 
   /**
