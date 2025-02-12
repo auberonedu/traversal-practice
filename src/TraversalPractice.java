@@ -96,8 +96,21 @@ public class TraversalPractice {
    * @return The number of levels in the tree
    */
   public static <T> int numLevels(Node<T> node) {
-    return 0;
+    //edge cases
+    if (node == null) return 0;
+    if (node.left == null && node.right == null) return 1;
+
+     // Get the number of levels in left and right subtrees
+     int leftLevels = numLevels(node.left);
+     int rightLevels = numLevels(node.right);
+ 
+     // find the larger depth
+    if (leftLevels > rightLevels) {
+      return leftLevels + 1;
+  } else {
+      return rightLevels + 1;
   }
+ }
 
   public static void main(String[] args) {
     /*
