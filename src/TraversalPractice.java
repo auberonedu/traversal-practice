@@ -34,7 +34,14 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static <T> void printNodesWithOneChild(Node<T> node) {
-    
+    if (node == null){
+      return;
+    } 
+    if(node.left != null && node.right == null || node.left == null && node.right != null){
+      System.out.println(node.value);
+    }
+    printNodesWithOneChild(node.left);
+    printNodesWithOneChild(node.right);
   }
 
     /**
@@ -70,7 +77,20 @@ public class TraversalPractice {
    * @return the max value
    */
   public static int maxVal(Node<Integer> node) {
-    return 0;
+    if (node == null){
+      return 0;
+    }
+    int max = node.value; 
+    int leftMax = maxVal(node.left);
+    int rightMax = maxVal(node.right);
+    if (leftMax > max){
+      max = leftMax;
+    } 
+    if (rightMax > max){
+      max = rightMax;
+    } 
+
+    return max;
   }
 
   /**
