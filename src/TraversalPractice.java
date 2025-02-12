@@ -8,6 +8,20 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static void printOddNodes(Node<Integer> node) {
+    if(node == null){
+      return;
+    }
+
+    // visit left subtree recursively
+    printOddNodes(node.left);
+
+    // visit right subtree recursively
+    printOddNodes(node.right);
+
+    // determine if root of current subtree is odd
+    if( node.value % 2 != 0 ){
+      System.out.println(node.value);
+    }
 
   }
 
@@ -20,7 +34,14 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static <T> void printNodesWithOneChild(Node<T> node) {
-    
+    if (node == null){
+      return;
+    } 
+    if(node.left != null && node.right == null || node.left == null && node.right != null){
+      System.out.println(node.value);
+    }
+    printNodesWithOneChild(node.left);
+    printNodesWithOneChild(node.right);
   }
 
     /**
@@ -32,7 +53,18 @@ public class TraversalPractice {
    * @return the sum 
    */
   public static int treeSum(Node<Integer> node) {
-    return 0;
+    if( node == null){
+      return 0;
+    }
+
+    // get sum of left and right subtrees
+    int leftSum = treeSum(node.left);
+    int rightSum = treeSum(node.right);
+
+    //add subtrees and root value for total treeSum
+    int sum = node.value + leftSum + rightSum;
+
+    return sum;
   }
 
   /**
@@ -45,7 +77,20 @@ public class TraversalPractice {
    * @return the max value
    */
   public static int maxVal(Node<Integer> node) {
-    return 0;
+    if (node == null){
+      return 0;
+    }
+    int max = node.value; 
+    int leftMax = maxVal(node.left);
+    int rightMax = maxVal(node.right);
+    if (leftMax > max){
+      max = leftMax;
+    } 
+    if (rightMax > max){
+      max = rightMax;
+    } 
+
+    return max;
   }
 
   /**
@@ -58,7 +103,32 @@ public class TraversalPractice {
    * @return The number of levels in the tree
    */
   public static <T> int numLevels(Node<T> node) {
-    return 0;
+    if( node == null ) {
+      return 0;
+    }
+
+    //if no left and right child, this is only a root
+    if(node.left == null && node.right == null){
+      return 1;
+    }
+
+
+    //recursviely traverse the tree
+    int leftLevels = numLevels(node.left);
+    int rightLevels = numLevels(node.right);
+    
+    int levels = 0;
+
+    // check which subtree has the greater depth and add 1 for the current level
+    if( leftLevels > rightLevels){
+      levels = leftLevels + 1;
+    } else {
+      levels = rightLevels + 1;
+    }
+
+    return levels;
+
+    
   }
 
   public static void main(String[] args) {
@@ -72,7 +142,10 @@ public class TraversalPractice {
 
      // Replace the below line to create a tree 
      // as represented in the diagram above
-     Node<Integer> smallTree = null;
+     Node<Integer> smallTree = new Node<Integer>(99, 
+     new Node<>(45, new Node<>(9, null, null), 
+     new Node<>(5, null, null)), 
+     new Node<>(82, null, new Node<>(16, null, null)));
 
 
     /*
