@@ -111,8 +111,13 @@ public class TraversalPractice {
 
      // Replace the below line to create a tree 
      // as represented in the diagram above
-     Node<Integer> smallTree = null;
-
+     Node<Integer> smallTree = new Node<>(99,
+        new Node<>(45,
+            new Node<>(9, null, null),
+            new Node<>(5, null, null)),
+        new Node<>(82,
+            null,
+            new Node<>(16, null, null)));
 
     /*
      *              42
@@ -137,5 +142,12 @@ public class TraversalPractice {
                 new Node<>(87, // 87 is right child of 63
                         new Node<>(76, null, null), // 76 is the left child of 87
                         null))); // no right child of 87
+      
+      // Additional Tests
+      System.out.println("Odd nodes in smallTree:");
+      printOddNodes(smallTree);
+
+      System.out.println("\nOdd nodes in largeTree:");
+      printOddNodes(largeTree);             
   }
 }
