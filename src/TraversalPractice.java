@@ -83,7 +83,32 @@ public class TraversalPractice {
    * @return The number of levels in the tree
    */
   public static <T> int numLevels(Node<T> node) {
-    return 0;
+    if( node == null ) {
+      return 0;
+    }
+
+    //if no left and right child, this is only a root
+    if(node.left == null && node.right == null){
+      return 1;
+    }
+
+
+    //recursviely traverse the tree
+    int leftLevels = numLevels(node.left);
+    int rightLevels = numLevels(node.right);
+    
+    int levels = 0;
+
+    // check which subtree has the greater depth and add 1 for the current level
+    if( leftLevels > rightLevels){
+      levels = leftLevels + 1;
+    } else {
+      levels = rightLevels + 1;
+    }
+
+    return levels;
+
+    
   }
 
   public static void main(String[] args) {
