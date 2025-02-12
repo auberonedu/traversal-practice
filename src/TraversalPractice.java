@@ -46,7 +46,12 @@ public class TraversalPractice {
    * @return the sum 
    */
   public static int treeSum(Node<Integer> node) {
-    return 0;
+    if (node == null) return 0;
+    int sum = node.value;
+    sum += treeSum(node.left);
+    sum += treeSum(node.right);
+    return sum;
+
   }
 
   /**
