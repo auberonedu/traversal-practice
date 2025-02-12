@@ -1,3 +1,4 @@
+
 public class TraversalPractice {
   
   /**
@@ -8,6 +9,14 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static void printOddNodes(Node<Integer> node) {
+    if (node == null) return;
+
+    printOddNodes(node.left);
+    printOddNodes(node.right);
+    
+    if (node.value % 2 != 0) {
+      System.out.println(node.value);
+    }
 
   }
 
@@ -20,7 +29,18 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static <T> void printNodesWithOneChild(Node<T> node) {
-    
+    if (node == null) return;
+
+    printNodesWithOneChild(node.left);
+    printNodesWithOneChild(node.right);
+
+    if (node.left == null && node.right == null) {
+      return;
+    }
+
+    if (node.left == null || node.right == null) {
+      System.out.println(node.value);
+    }
   }
 
     /**
@@ -32,7 +52,17 @@ public class TraversalPractice {
    * @return the sum 
    */
   public static int treeSum(Node<Integer> node) {
-    return 0;
+    
+    if (node == null) return 0;
+
+    int nodeValueTracker = node.value;
+
+    nodeValueTracker += treeSum(node.left);
+    nodeValueTracker += treeSum(node.right);
+    
+
+
+    return nodeValueTracker;
   }
 
   /**
@@ -45,7 +75,23 @@ public class TraversalPractice {
    * @return the max value
    */
   public static int maxVal(Node<Integer> node) {
-    return 0;
+    if (node == null) return 0;
+
+    int maxValue = node.value;
+
+    int maxLeft = maxVal(node.left);
+    int maxRight = maxVal(node.right);
+    
+    if (maxLeft > maxValue) {
+      maxValue = maxLeft;
+    }
+
+    if (maxRight > maxValue) {
+      maxValue = maxRight;
+    }
+    
+
+    return maxValue;
   }
 
   /**
@@ -72,7 +118,12 @@ public class TraversalPractice {
 
      // Replace the below line to create a tree 
      // as represented in the diagram above
-     Node<Integer> smallTree = null;
+     Node<Integer> smallTree = new Node<>(99, null, null);
+     smallTree.left = new Node<>(45, null, null);
+     smallTree.left.right = new Node<>(5, null, null);
+     smallTree.left.left = new Node<>(9, null, null);
+     smallTree.right = new Node<>(82, null, null);
+     smallTree.right.right = new Node<>(16, null, null);
 
 
     /*
