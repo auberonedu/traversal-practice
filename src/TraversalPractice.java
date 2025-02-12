@@ -103,7 +103,12 @@ public class TraversalPractice {
    * @return The number of levels in the tree
    */
   public static <T> int numLevels(Node<T> node) {
-    return 0;
+    if (node == null) return 0;
+
+    int leftLvlTracker = numLevels(node.left);
+    int rightLvlTracker = numLevels(node.right);
+
+    return Math.max(leftLvlTracker, rightLvlTracker) + 1;
   }
 
   public static void main(String[] args) {
