@@ -104,17 +104,14 @@ public class TraversalPractice {
   public static <T> int numLevels(Node<T> node) {
     if (node == null) return 0;
 
-    if (node.left == null && node.right == null) return 1;
+    int countLeft = 1;
+    int countRight = 1;
 
-    int highestCount = 1;
+    countLeft += (numLevels(node.left));
+    countRight += (numLevels(node.right));
 
-    // highest distance from root to leaf
-    
-
-    return 0;
-    // check null
-    // Which is bigger? (node.left vs node.right)
-    // return 1 + 
+    if (countLeft > countRight) { return countLeft; }
+    else { return countRight; }
   }
 
   public static void main(String[] args) {
