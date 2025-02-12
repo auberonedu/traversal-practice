@@ -54,13 +54,12 @@ public class TraversalPractice {
     
     if (node == null) return 0;
 
-    int nodeValueTracker = 0;
+    int nodeValueTracker = node.value;
 
-    treeSum(node.left);
-    treeSum(node.right);
+    nodeValueTracker += treeSum(node.left);
+    nodeValueTracker += treeSum(node.right);
     
-    nodeValueTracker += node.value;
-    
+
 
     return nodeValueTracker;
   }
