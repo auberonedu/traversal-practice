@@ -12,11 +12,12 @@ public class TraversalPractice {
       return;
     }
 
+    printOddNodes(node.left);
+    printOddNodes(node.right);
+
     if (node.value % 2 != 0) {
       System.out.println(node.value);
     }
-    printOddNodes(node.left);
-    printOddNodes(node.right);
   }
 
   /**
@@ -29,6 +30,9 @@ public class TraversalPractice {
    */
   public static <T> void printNodesWithOneChild(Node<T> node) {
     if (node == null) return;
+
+    printNodesWithOneChild(node.left);
+    printNodesWithOneChild(node.right);
 
     boolean hasLeft = (node.left != null);
     boolean hasRight = (node.right != null);
@@ -106,7 +110,13 @@ public class TraversalPractice {
 
      // Replace the below line to create a tree 
      // as represented in the diagram above
-     Node<Integer> smallTree = null;
+     Node<Integer> smallTree = new Node<>(99, // root
+      new Node<>(45, // 45 is the left child of 99
+        new Node<>(9, null, null), // 9 is the left child of 45
+        new Node<>(5, null, null)), // 5 is the right child of 45
+      new Node<>(82, null, // 82 is the right child of 99
+        new Node<>(16, null, null)) // 16 is the right child of 82
+     );
 
 
     /*
