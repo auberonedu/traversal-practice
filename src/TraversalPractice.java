@@ -103,6 +103,9 @@ public class TraversalPractice {
    */
   public static <T> int numLevels(Node<T> node) {
     return 0;
+    // check null
+    // Which is bigger? (node.left vs node.right)
+    // return 1 + 
   }
 
   public static void main(String[] args) {
