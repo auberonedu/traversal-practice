@@ -32,6 +32,15 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static <T> void printNodesWithOneChild(Node<T> node) {
+    if (node == null) return;
+
+    //traverse pre-order
+    //only print nodes with exactly one child
+    if ((node.left == null && node.right != null) || (node.left != null && node.right == null)) {
+      System.out.println(node.value);
+    }
+    printNodesWithOneChild(node.left);
+    printNodesWithOneChild(node.right);
     
   }
 
