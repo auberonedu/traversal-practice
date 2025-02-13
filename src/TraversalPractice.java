@@ -8,7 +8,21 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static void printOddNodes(Node<Integer> node) {
-
+    /*
+     * if node is null return
+     * traverse through the node using post-order algo
+     * if node is not even, store and print the odd value 
+     * 
+     */
+    // Returning if the node is null
+     if (node == null) return;
+    // Traverse through the nodes
+     printOddNodes(node.left);
+     printOddNodes(node.right);
+    // If node is not even, print
+     if (node.value % 2 != 0) {
+        System.out.println(node.value);
+     }
   }
 
   /**
@@ -20,7 +34,18 @@ public class TraversalPractice {
    * @param node The root of the tree to print
    */
   public static <T> void printNodesWithOneChild(Node<T> node) {
-    
+    // return if node null
+    if (node == null) return;
+
+    // search through each child to see if it's null and print value
+    if (node.left != null && node.right == null){
+      System.out.println(node.value);
+    } else if (node.left == null && node.right != null){
+      System.out.println(node.value);
+    }
+    // traverse pre-order
+    printNodesWithOneChild(node.left);
+    printNodesWithOneChild(node.right);
   }
 
     /**
@@ -32,7 +57,24 @@ public class TraversalPractice {
    * @return the sum 
    */
   public static int treeSum(Node<Integer> node) {
-    return 0;
+    // return 0 if node is null
+    if (node == null) return 0;
+
+    // set sum = to the node value
+    int sum = node.value;
+
+    // if the left child has a node add it to the sum
+    if (node.left != null) {
+      sum += treeSum(node.left);
+    }
+
+    // if the right child has a node add it to the sum
+    if (node.right != null) {
+      sum += treeSum(node.right);
+    }
+
+    // return sum
+    return sum;
   }
 
   /**
@@ -45,7 +87,18 @@ public class TraversalPractice {
    * @return the max value
    */
   public static int maxVal(Node<Integer> node) {
-    return 0;
+    // return 0 if node is null
+    if(node == null) return 0;
+
+    // convert and set the root the int datatype
+    int max = node.value;
+
+    // convert the other childs to int datatypes to avoid bad operand types
+    int leftMax = maxVal(node.left);
+    int rightMax = maxVal(node.right);
+
+    //return max with Math.max to find the maxVal
+    return Math.max(max, Math.max(leftMax, rightMax));
   }
 
   /**
@@ -58,7 +111,17 @@ public class TraversalPractice {
    * @return The number of levels in the tree
    */
   public static <T> int numLevels(Node<T> node) {
-    return 0;
+    // return 0 if node is null
+    if (node == null) return 0;
+    // return 1 if root has no children
+    if (node.left == null && node.right == null) return 1;
+
+    // setting the nodes to be able to find the max level
+    int leftChild = numLevels(node.left);
+    int rightChild = numLevels(node.right);
+
+    // return the number of levels using Math.max()
+    return Math.max(leftChild, rightChild) + 1;
   }
 
   public static void main(String[] args) {
@@ -72,7 +135,12 @@ public class TraversalPractice {
 
      // Replace the below line to create a tree 
      // as represented in the diagram above
-     Node<Integer> smallTree = null;
+     Node<Integer> smallTree = new Node<Integer>(99,
+      new Node<Integer>(45, // 45 is left child of 99
+        new Node<Integer>(9, null, null), // 9 is the left child of 45
+          new Node<Integer>(5, null, null)), // 5 is the right child of 45
+      new Node<Integer>(85, null, // 85 is the right child of 99, with no left no children
+        new Node<Integer>(16, null, null))); // 82 is the right child of 99
 
 
     /*
