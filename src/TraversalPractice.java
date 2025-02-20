@@ -17,7 +17,7 @@ public class TraversalPractice {
     }
     printOddNodes(node.left);
     printOddNodes(node.right);
-    if(node.value %1 == 1){
+    if(node.value %2 == 1){
       System.out.println(node.value);
     }
   }
@@ -104,7 +104,28 @@ public class TraversalPractice {
    * @return The number of levels in the tree
    */
   public static <T> int numLevels(Node<T> node) {
-    return 0;
+    if(node==null){
+      return 0;
+    }
+    int levels = 0;
+    Queue <Node<T>> queue = new LinkedList<>();
+    queue.add(node);
+
+    while(!queue.isEmpty()){
+      int levelSize = queue.size();
+      levels++;
+
+      for(int i=0; i<levelSize; i++){
+        Node<T> curr = queue.poll();
+        if(curr.left != null){
+          queue.add(curr.left);
+        }
+        if(curr.right != null){
+          queue.add(curr.right);
+        }
+      }
+    }
+    return levels;
   }
 
   public static void main(String[] args) {
