@@ -1,3 +1,7 @@
+import java.util.LinkedList;
+import java.util.*;
+import javax.naming.LimitExceededException;
+
 public class TraversalPractice {
   
   /**
@@ -50,7 +54,10 @@ public class TraversalPractice {
    * @return the sum 
    */
   public static int treeSum(Node<Integer> node) {
-    return 0;
+    if(node==null){
+      return 0;
+    }
+    return node.value + treeSum(node.left) + treeSum(node.right);
   }
 
   /**
@@ -63,7 +70,28 @@ public class TraversalPractice {
    * @return the max value
    */
   public static int maxVal(Node<Integer> node) {
-    return 0;
+    if(node == null){
+      return 0;
+    }
+    int maxVal = 0;
+
+    Queue<Node<Integer>> queue = new LinkedList<>();
+    queue.add(node);
+
+    while(!queue.isEmpty()){
+      Node<Integer> curr = queue.poll();
+      if(curr.value > maxVal){
+        maxVal = curr.value;
+      }
+      if(curr.left != null){
+        queue.add(curr.left);
+      }
+      if (curr.right != null){
+        queue.add(curr.right);
+      }
+      
+    }
+    return maxVal;
   }
 
   /**
